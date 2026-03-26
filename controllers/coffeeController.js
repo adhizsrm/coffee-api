@@ -1,4 +1,19 @@
 import coffeeData from "../db/coffeeData.js";
+
+async function createCoffee(req, res) {
+  let newCoffee = req.body;
+  if (Object.hasOwn(req.body, "id")) {
+    return res
+      .status(400)
+      .json({ error: "Please do not provide an ID. The system generates it." });
+  }
+  const id =
+    coffeeData.length > 0 ? coffeeData[coffeeData.length - 1].id + 1 : 1;
+  newCoffee = { id: id, ...newCoffee };
+  coffeeData.push(newCoffee);
+  res.status(201).json(newCoffee);
+}
+
 async function getAllCoffees(req, res) {
   let result = coffeeData;
 
@@ -55,4 +70,4 @@ async function getCoffeeById(req, res) {
     : res.json(coffee);
 }
 
-export { getAllCoffees, getCoffeeById };
+export { createCoffee, getAllCoffees, getCoffeeById };

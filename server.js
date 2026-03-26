@@ -4,6 +4,8 @@ import coffeeRoute from "./routes/coffeeRoute.js";
 const PORT = 8000;
 const app = express();
 
+app.use(express.json());
+
 app.use("/", coffeeRoute);
 
 app.use((req, res) => res.status(404).json({ error: "Route not found" }));
