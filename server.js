@@ -1,12 +1,10 @@
 import express from "express";
-import coffeeData from "./db/coffeeData.js";
+import coffeeRoute from "./routes/coffeeRoute.js";
 
 const PORT = 8000;
 const app = express();
 
-app.get("/coffee", (req, res) => {
-  res.json(coffeeData);
-});
+app.use("/", coffeeRoute);
 
 app.use((req, res) => res.status(404).json({ error: "Route not found" }));
 
