@@ -1,11 +1,15 @@
 import express from "express";
-import { createCoffee, getAllCoffees, getCoffeeById } from "../controllers/coffeeController.js";
+import {
+  createCoffee,
+  getAllCoffees,
+  getCoffeeById,
+} from "../controllers/coffeeController.js";
 
 const coffeeRoute = express.Router();
 
-coffeeRoute.post("/coffee", createCoffee);
+coffeeRoute.post("/", createCoffee);
 
-coffeeRoute.get("/coffee", getAllCoffees);
-coffeeRoute.get("/coffee/:id", getCoffeeById);
+coffeeRoute.get("/", getAllCoffees);
+coffeeRoute.get("/:id", getCoffeeById);
 
 export default coffeeRoute;
